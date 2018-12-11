@@ -55,3 +55,17 @@ def submission_to_surprise(name_train):
                 writer.writerow({'Item':np.squeeze(r1), 'User':np.squeeze(r2), 'Prediction':int(r3)})
             
     create_csv_submission2(item, user, values, 'csv/surprise_train.csv')
+
+def create_csv_submission(ids, y_pred, name):
+    """
+    Creates an output file in csv format for submission to kaggle
+    Arguments: ids (event ids associated with each prediction)
+               y_pred (predicted class labels)
+               name (string name of .csv output file to be created)
+    """
+    with open(name, 'w') as csvfile:
+        fieldnames = ['Id', 'Prediction']
+        writer = csv.DictWriter(csvfile, delimiter=",", fieldnames=fieldnames)
+        writer.writeheader()
+        for r1, r2 in zip(ids, y_pred):
+            writer.writerow({'Id':r1,'Prediction':int(r2)})
