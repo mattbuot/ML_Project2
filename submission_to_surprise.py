@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+import csv
+import numpy as np
             
 def get_ids_values(path):
     """Get the values and the ids from the submission"""
