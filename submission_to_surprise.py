@@ -54,4 +54,4 @@ def submission_to_surprise(name_train):
             for r1, r2, r3 in zip(item, user, y_pred):
                 writer.writerow({'Item':np.squeeze(r1), 'User':np.squeeze(r2), 'Prediction':int(r3)})
             
-    create_csv_submission2(item, user, values, 'surprise_train.csv')           
+    create_csv_submission2(item, user, values, 'csv/surprise_train.csv')
