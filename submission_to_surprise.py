@@ -1,5 +1,27 @@
 # -*- coding: utf-8 -*-
             
+def get_ids_values(path):
+    """Get the values and the ids from the submission"""
+    
+    def read_txt(path):
+        """read text file from path."""
+        
+        with open(path, "r") as f:
+            return f.read().splitlines()
+            
+    raw_data = read_txt(path)[1:]
+    
+    def deal_line(line):
+        ids, values = line.split(',')
+        return ids, values
+        
+    ids_values = [deal_line(line) for line in raw_data]
+    ids = [x[0] for x in ids_values]
+    values = [x[1] for x in ids_values]
+    values = list(map(int, values))
+        
+    return ids, values
+
 def submission_to_surprise(name_train):
     """Function making all the necessery step to translate the rx_cy to actual column with user and item number so surprise      
        can work with it"""
