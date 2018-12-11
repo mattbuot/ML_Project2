@@ -25,13 +25,7 @@ def get_ids_values(path):
         
     return ids, values
 
-def submission_to_surprise(name_train):
-    """Function making all the necessery step to translate the rx_cy to actual column with user and item number so surprise      
-       can work with it"""
-    
-    ids, values = get_ids_values(name_train)
-    
-    def replace_ids_submission(ids):
+def replace_ids_submission(ids):
         """Get the Ids of the submission"""
     
         item = np.zeros((len(ids), ), dtype = 'int')
@@ -42,6 +36,12 @@ def submission_to_surprise(name_train):
             user[i] = int(col.replace("c", ""))
             
         return item, user
+
+def submission_to_surprise(name_train):
+    """Function making all the necessery step to translate the rx_cy to actual column with user and item number so surprise      
+       can work with it"""
+    
+    ids, values = get_ids_values(name_train)
     
     item, user = replace_ids_submission(ids)
     
