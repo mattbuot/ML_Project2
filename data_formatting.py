@@ -6,18 +6,24 @@ import numpy as np
 
 def read_original_csv(path):
     """Reads the original csv and returns it as a list of users, a list of items and a list of ratings"""
+    ids, ratings = read_ids_ratings(path)
+
+    # Each id is composed of 2 parts: user and item
+    # Users have prefix 'r' for 'row' and Items have prefix 'c' for 'Column', so we have to get rid of those headers
+    users = [int(line.split('_')[0][1:]) for line in ids]
+    items = [int(line.split('_')[1][1:]) for line in ids]
+
+    return users, items, ratings
+
+
+def read_ids_ratings(path):
+    """Reads the ids of the csv file in the original format"""
 
     with open(path, "r") as f:
         raw_data = f.read().splitlines()[1:]  # Split the lines and remove the header
         ids = [line.split(',')[0] for line in raw_data]  # Id is the first part of each line
         ratings = [int(line.split(',')[1]) for line in raw_data]  # Rating is the second part of each line
-
-        # Each id is composed of 2 parts: user and item
-        # Users have prefix 'r' for 'row' and Items have prefix 'c' for 'Column', so we have to get rid of those headers
-        users = [int(line.split('_')[0][1:]) for line in ids]
-        items = [int(line.split('_')[1][1:]) for line in ids]
-
-        return users, items, ratings
+        return ids, ratings
 
 
 def create_clean_csv(users, items, ratings, path):
