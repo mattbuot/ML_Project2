@@ -45,14 +45,14 @@ def submission_to_surprise(name_train):
     
     item, user = replace_ids_submission(ids)
     
-    def create_csv_submission2(item, user, y_pred, name):
+    def create_csv_submission2(user, item, y_pred, name):
         """"""
         with open(name, 'w') as csvfile:
-            fieldnames = ['Item', 'User', 'Prediction']
+            fieldnames = ['User', 'Item', 'Rating']
             writer = csv.DictWriter(csvfile, delimiter=",", fieldnames=fieldnames)
             writer.writeheader()
-            for r1, r2, r3 in zip(item, user, y_pred):
-                writer.writerow({'Item':np.squeeze(r1), 'User':np.squeeze(r2), 'Prediction':int(r3)})
+            for r1, r2, r3 in zip(user, item, y_pred):
+                writer.writerow({'User':np.squeeze(r1), 'Item':np.squeeze(r2), 'Rating':int(r3)})
             
     create_csv_submission2(item, user, values, 'csv/surprise_train.csv')
 
@@ -68,4 +68,4 @@ def create_csv_submission(ids, y_pred, name):
         writer = csv.DictWriter(csvfile, delimiter=",", fieldnames=fieldnames)
         writer.writeheader()
         for r1, r2 in zip(ids, y_pred):
-            writer.writerow({'Id':r1,'Prediction':int(r2)})
+            writer.writerow({'Id':r1,'Prediction':int(np.round(r2))})
