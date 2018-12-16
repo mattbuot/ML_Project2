@@ -1,4 +1,4 @@
 *.csv
 .ipynb_checkpoints/
-"Surprise implementations.ipynb"
-"Exploratory Matth.ipynb"
+Surprise_implementations.ipynb
+Exploratory_Matth.ipynb
