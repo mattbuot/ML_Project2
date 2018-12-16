@@ -68,4 +68,4 @@ def create_csv_submission(ids, y_pred, name):
         writer = csv.DictWriter(csvfile, delimiter=",", fieldnames=fieldnames)
         writer.writeheader()
         for r1, r2 in zip(ids, y_pred):
-            writer.writerow({'Id':r1,'Prediction':int(r2)})
+            writer.writerow({'Id':r1,'Prediction':round(r2)})
