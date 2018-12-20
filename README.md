@@ -34,4 +34,4 @@ In order for our code to reproduce exactly our best kaggle submission, we set al
 
 ## neural_network_regression.py
 This file is an example of how we used neural networks for our regression. It requires tensorflow and the same dependencies as for run.py
-It trains a model on a subset of our training set for regression and output the predictions for the remaining test set in a csv file.
+It trains a model on a subset of our training set for regression and outputs the predictions for the remaining test set in a csv file.
