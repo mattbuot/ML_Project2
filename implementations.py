@@ -6,6 +6,11 @@ from discrete_surprise import *
 import time
 import pandas as pd
 import numpy as np
+import tensorflow as tf
+from tensorflow import keras
+from keras import Sequential
+from keras.layers import Dense
+from keras.utils import plot_model
 
 
 def best_algorithms(limit=None):
