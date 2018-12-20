@@ -63,8 +63,11 @@ df_full = pd.concat([df_test, df_features_test], axis=1)
 df_training_features, df_test_features, df_training_labels, df_test_labels = extract_test_train(df_full)
 
 model = build_model()
+
+# The model is fitted to the training set, this line outputs the accuracy for each epoch
 history = model.fit(df_training_features, df_training_labels, validation_split=0.2, epochs=20, batch_size=50, verbose=1)
 
+# Predictions are made on the test set
 predictions = model.predict(df_test_features)
 predictions = [round(prediction) for prediction in predictions.flatten()]
 
