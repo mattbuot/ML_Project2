@@ -6,6 +6,7 @@ import numpy as np
 
 def read_original_csv(path):
     """Reads the original csv and returns it as a list of users, a list of items and a list of ratings"""
+
     ids, ratings = read_ids_ratings(path)
 
     # Each id is composed of 2 parts: user and item
@@ -28,6 +29,7 @@ def read_ids_ratings(path):
 
 def create_clean_csv(users, items, ratings, path):
     """Saves the (user,item,rating) pairs in a clean csv file"""
+
     with open(path, 'w') as file:
         writer = csv.DictWriter(file, delimiter=',', fieldnames=['User', 'Item', 'Rating'])
         writer.writeheader()
@@ -43,12 +45,10 @@ def clean_csv(path_original, path_clean):
 
 
 def create_csv_submission(ids, y_pred, path):
-    """
-    Creates an output file in csv format for submission to CrowdAI
+    """Creates an output file in csv format for submission to CrowdAI
     Arguments: ids (event ids associated with each prediction)
                y_pred (predicted class labels)
-               path (string path of .csv output file to be created)
-    """
+               path (string path of .csv output file to be created)"""
 
     with open(path, 'w') as csvfile:
         fieldnames = ['Id', 'Prediction']
@@ -56,3 +56,11 @@ def create_csv_submission(ids, y_pred, path):
         writer.writeheader()
         for r1, r2 in zip(ids, y_pred):
             writer.writerow({'Id': r1, 'Prediction': int(np.round(r2))})
+
+
+def submit(predictions, path_sample, path_submission):
+    """Makes the submission at location path_submission file based on the predictions
+    and on the ids located at path_sample"""
+
+    ids = read_ids_ratings(path_sample)[0]
+    create_csv_submission(ids, predictions, path_submission)
