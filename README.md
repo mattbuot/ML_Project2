@@ -25,6 +25,7 @@ In order to be executed, the run.py file needs the following files in the same f
 data_formatting.py
 implementations.py
 neural_network_regression.py
+discrete_surprise.py
 ```
 All those files should be already included in the code.zip file at the right location.
 The data csv files (`data_train.csv` and `sampleSumbmission.csv`) must be located in the folder `csv` (so their path from `run.py` is `csv/data_train.csv` and `csv/sampleSubmission.csv`). The output `submission.csv`, and the preprocessed `data_clean.csv` files will be located in `csv` as well.
