@@ -15,11 +15,6 @@ from keras.utils import plot_model
 from implementations import *
 
 
-PATH_CLEAN = 'csv/data_clean.csv'
-PATH_SAMPLE = 'csv/sampleSubmission.csv'
-PATH_SUBMISSION = 'csv/submission.csv'
-data_folder = 'csv/'
-
 PATH_ORIGINAL = 'csv/data_train.csv'
 PATH_CLEAN = 'csv/data_clean.csv'
 PATH_SAMPLE = 'csv/sampleSubmission.csv'
@@ -34,7 +29,7 @@ data = Dataset.load_from_df(df[['User', 'Item', 'Rating']], reader)
 trainset_90, testset_10 = train_test_split(data, test_size=0.1, random_state=2018)
 
 #  Define the algorithms. We take the 3 best layer one algorithms.
-#  algo_90 will train on 90% of the training set and algo_100 will train on 100% of it
+#  algo_90 will train on 90% of the training set
 algos_90 = best_algorithms(3)
 
 print('Training the algorithms')
@@ -71,5 +66,6 @@ model = build_model()
 history = model.fit(df_training_features, df_training_labels, validation_split=0.2, epochs=20, batch_size=50, verbose=1)
 
 predictions = model.predict(df_test_features)
+predictions = [round(prediction) for prediction in predictions.flatten()]
 
 pd.DataFrame(predictions).to_csv('test_predictions.csv')
