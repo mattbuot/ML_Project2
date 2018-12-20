@@ -10,7 +10,7 @@ Note that it can be quite long to run (up to 30 mins) because it has to train mu
 
  
 ## Dependencies
-The external libraries that we use are `surprise`, `time`, `pandas`, `numpy`, `scipy`, `csv` and `sklearn`. All of these libraries are very easy to install, and you can use the following commands if you miss some of them:
+The external libraries that we use are `surprise`, `time`, `pandas`, `numpy`, `scipy`, `csv`, `tensorflow`, `keras` and `sklearn`. All of these libraries are very easy to install, and you can use the following commands if you miss some of them:
 ```
 pip install numpy
 pip install scipy
